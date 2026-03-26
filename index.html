@@ -368,8 +368,18 @@
     // Inicializa os ícones
     lucide.createIcons();
     
+    // Lógica para abrir e fechar o menu no celular
     document.addEventListener('DOMContentLoaded', function() {
       const mobileBtn = document.getElementById('mobile-menu-btn');
-      constsin});
+      const mobileMenu = document.getElementById('mobile-menu');
+      
+      if (mobileBtn && mobileMenu) {
+        mobileBtn.addEventListener('click', function() {
+          // Adiciona ou remove a classe que mostra o menu
+          mobileMenu.classList.toggle('active'); // Certifique-se de que no seu styles.css a classe .mobile-menu.active tenha display: block ou algo similar
+        });
+      }
+    });
+  </script>
 
       
