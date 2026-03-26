@@ -1,0 +1,304 @@
+/* Defina uma posição para que o z-index funcione */
+.content-container {
+  position: relative; /* Ou absolute, fixed, dependendo do seu layout */
+  z-index: 2; /* Um valor mais alto */
+}
+
+
+
+
+/* =========================================
+   FUNDO AURORA WAVES (MAIS APARENTE E ATIVA)
+   IDENTIDADE VECTRA: AZUL CLARO #4FA3FF
+   ========================================= */
+
+/* =========================================
+   FUNDO AURORA WAVES (POSIÇÕES AJUSTADAS)
+   ========================================= */
+
+/* =========================================
+   FUNDO AURORA WAVES (VERSÃO DISCRETA E SUTIL)
+   ========================================= */
+
+body {
+    background-color: #050a14; 
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+}
+
+#aurora-container {
+    position: fixed;
+    inset: -100px;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.35; /* 📉 REDUZIDO: Brilho geral muito mais suave */
+    filter: blur(150px); /* 🌫️ AUMENTADO: Espalha mais a luz, tirando a marcação forte */
+}
+
+/* Base comum das luzes (agora menores) */
+#aurora-container::before,
+#aurora-container::after {
+    content: "";
+    position: absolute;
+    width: 45vw;  /* 📉 REDUZIDO: Bolas de luz menores */
+    height: 45vh;
+    border-radius: 50%;
+    background: #4FA3FF; /* Azul Vectra */
+    mix-blend-mode: hard-light;
+}
+
+/* 🟢 LUZ 1: CANTO SUPERIOR ESQUERDO (Bem suave) */
+#aurora-container::before {
+    top: -10%;   
+    left: -10%;  
+    animation: flutuarCanto1 25s infinite alternate ease-in-out;
+    opacity: 0.8; 
+}
+
+/* 🟢 LUZ 2: CANTO INFERIOR DIREITO (Quase um reflexo) */
+#aurora-container::after {
+    bottom: -10%; 
+    right: -10%;  
+    animation: flutuarCanto2 30s infinite alternate-reverse ease-in-out;
+    opacity: 0.5; 
+}
+
+/* 🔴 DESLIGANDO A 3ª LUZ PARA LIMPAR O VISUAL */
+.aurora-extra {
+    display: none; /* Esconde completamente a luz do meio/topo */
+}
+
+/* =========================================
+   ANIMAÇÕES (MAIS LENTAS E CURTAS)
+   ========================================= */
+
+/* Movimentos mais curtos para não invadir o centro da tela */
+@keyframes flutuarCanto1 {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(8vw, 8vh) scale(1.1); } 
+}
+
+@keyframes flutuarCanto2 {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(-8vw, -8vh) scale(1.05); } 
+}
+
+
+
+
+
+
+/* Esconder barra de rolagem */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+
+/* =========================================
+   COMPORTAMENTO DA SIDEBAR (Sumiço Total)
+   ========================================= */
+
+#sidebar {
+    /* overflow: hidden garante que os textos não vazem da caixa enquanto ela encolhe */
+    overflow: hidden;
+    /* white-space: nowrap impede que os textos quebrem de linha durante a animação */
+    white-space: nowrap;
+    /* Transição suave para largura e transparência */
+    transition: width 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+/* Quando clicamos no botão e a classe 'collapsed' é ativada pelo JS */
+#sidebar.collapsed {
+    width: 0;       /* A barra encolhe até sumir completamente */
+    opacity: 0;     /* Opcional: faz a barra ficar transparente enquanto some, dando um efeito premium */
+    padding: 0;     /* Remove qualquer espaçamento interno que possa segurar a largura */
+}
+
+/* Podemos remover todas aquelas regras antigas de esconder texto, 
+   pois com width: 0 e overflow: hidden, tudo já fica invisível naturalmente! */
+/* =========================================
+   ANIMAÇÃO DE ENTRADA DOS CARDS (SUAVE)
+   ========================================= */
+
+@keyframes subirESurgir {
+    from {
+        opacity: 0;
+        transform: translateY(40px); /* Começa 40px mais para baixo */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Volta para a posição original */
+    }
+}
+
+.card-animado {
+    opacity: 0; /* Garante que nasçam invisíveis */
+    /* Executa a animação criada acima em 0.6 segundos */
+    animation: subirESurgir 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Criando o efeito "Cascata" (Um card entra depois do outro) */
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
+.delay-6 { animation-delay: 0.6s; }
+
+
+/* =========================================
+   ANIMAÇÃO DE ENTRADA DOS CARDS (SUAVE)
+   ========================================= */
+@keyframes subirESurgir {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card-animado {
+    opacity: 0;
+    animation: subirESurgir 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* =========================================
+   EFEITO DE LUZ GRADIENTE NA BORDA (HOVER)
+   ========================================= */
+
+@keyframes girarLuz {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* O container do card precisa dessas regras para esconder o excesso da luz */
+.hover-gradient-border {
+    position: relative;
+    z-index: 1;
+    overflow: hidden; /* Corta a luz que sai do card */
+}
+
+/* A "Luz" que fica girando atrás */
+.hover-gradient-border::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    /* Gradiente cônico que cria o efeito de "feixe" de luz azul */
+    background: conic-gradient(
+        transparent, 
+        rgba(79, 163, 255, 0.3), 
+        #4FA3FF, 
+        rgba(79, 163, 255, 0.3), 
+        transparent 30%
+    );
+    animation: girarLuz 4s linear infinite;
+    opacity: 0; /* Invisível por padrão */
+    transition: opacity 0.5s ease;
+    z-index: -2;
+}
+
+/* O fundo interno do card (para cobrir o centro da luz) */
+.hover-gradient-border::after {
+    content: "";
+    position: absolute;
+    inset: 2px; /* Espessura da borda iluminada */
+    background: #152036; /* Cor exata do seu card (vectra-panel) */
+    border-radius: 14px; /* Um pouco menor que o rounded-2xl do card */
+    z-index: -1;
+    transition: background 0.3s ease;
+}
+
+/* Mostra a luz apenas no Hover */
+.hover-gradient-border:hover::before {
+    opacity: 1;
+}
+
+/* Ajuste especial para o card que já tem degradê (Visão Geral) */
+.card-com-gradiente::after {
+    background: linear-gradient(to bottom br, #1E3A5F, #0E1F35) !important;
+}
+/* =========================================
+   ANIMAÇÃO DE ESCONDER O MENU (SIDEBAR)
+   ========================================= */
+#sidebar {
+    overflow: hidden; /* Garante que os ícones e textos não vazem para fora */
+}
+
+#sidebar.collapsed {
+    width: 0 !important; /* Força a largura ir para zero */
+    border-right: none;  /* Esconde a linha da borda para sumir 100% */
+}
+/* =========================================
+   TAMANHO DA LOGO VECTRA
+   ========================================= */
+
+/* Chamamos a div e depois a tag 'img' que está dentro dela */
+.container-logo img {
+    position: relative;
+    right: 55.75px;
+    height: 80px;       /* MUDE AQUI: Tente 35px, 45px, 50px... */
+    width: auto;        /* Deixe 'auto' para a imagem não ficar esticada nem amassada */
+    max-width: 150px;   
+}
+
+/* Se quiser mexer no tamanho do texto "VECTRA" pelo CSS também: */
+.container-logo span {
+    font-size: 20px;    
+     margin-left: -100px; 
+}
+
+/* =========================================
+   EFEITO DE LUZ SUTIL NO CANTO DOS CARDS
+   ========================================= */
+
+/* Aplica o efeito a todos os cartões */
+.card-animado {
+    position: relative; /* Garante que o pseudo-elemento fique dentro */
+    overflow: hidden; /* Corta a luz que sair do card */
+}
+
+/* Criando a luz de canto usando ::before */
+.card-animado::before {
+    content: "";
+    position: absolute;
+    /* Expande um pouco para o blur não cortar nas bordas */
+    inset: -2px;
+    z-index: -10; /* Fica atrás do conteúdo principal */
+    
+    /* O Segredo: Gradiente Radial focado no canto inferior direito */
+    /* Usamos o seu Azul Claro Vectra (#4FA3FF) com transparência */
+    background: radial-gradient(circle at bottom right, rgba(79, 163, 255, 0.4), transparent);
+    
+    border-radius: 14px; /* Um pouco menor que o rounded-2xl do card (20px) */
+    opacity: 1; /* Mantém a luz sempre visível */
+}
+/* Estilo para o item clicado/ativo */
+.sidebar-item.active {
+    background-color: rgba(79, 163, 255, 0.1); /* Fundo sutil */
+    color: #4FA3FF !important; /* Texto azul */
+}
+
+/* Cria o traço azul no canto esquerdo usando pseudo-elemento */
+.sidebar-item.active::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 4px;
+    height: 32px;
+    background-color: #4FA3FF;
+    border-radius: 0 4px 4px 0;
+    box-shadow: 0 0 10px rgba(79, 163, 255, 0.8);
+}
+
+/* Garante que o ícone do item ativo também brilhe */
+.sidebar-item.active i {
+    transform: scale(1.1);
+    color: #4FA3FF;
+}
