@@ -11,7 +11,10 @@
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  
+  <script src="https://unpkg.com/lucide@0.292.0"></script>
+
   
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -275,47 +278,14 @@
             <i data-lucide="send"></i> Enviar mensagem
           </button>
         </form>
-        
-        <div class="contact-info">
-          
-          <div class="contact-item">
-            <div class="contact-icon">
-              <i data-lucide="mail"></i>
-            </div>
-            <div class="contact-info-group">
-              <h3>E-mail</h3>
-              <p>contato@vectra.com.br</p>
-            </div>
-          </div>
-
-          <div class="contact-item">
-            <div class="contact-icon">
-              <i data-lucide="phone"></i>
-            </div>
-            <div class="contact-info-group">
-              <h3>Telefone</h3>
-              <p>+55 (11) 99999-9999</p>
-            </div>
-          </div>
-
-          <div class="contact-item">
-            <div class="contact-icon">
-              <i data-lucide="map-pin"></i>
-            </div>
-            <div class="contact-info-group">
-              <h3>Endereço</h3>
-              <p>São Paulo, SP - Brasil</p>
-            </div>
-          </div>
-
         </div>
-      </div>
     </div>
   </section>
 
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
+        
         <div class="footer-brand">
           <a href="#home" class="logo">
             <div class="logo-v-container logo-v-container-lg">
@@ -332,6 +302,7 @@
             <a href="#" aria-label="Twitter"><i data-lucide="twitter"></i></a>
           </div>
         </div>
+
         <div class="footer-links-group">
           <h3>Produto</h3>
           <ul>
@@ -339,6 +310,7 @@
             <li><a href="#">Preços</a></li>
           </ul>
         </div>
+
         <div class="footer-links-group">
           <h3>Empresa</h3>
           <ul>
@@ -346,6 +318,7 @@
             <li><a href="#">Carreiras</a></li>
           </ul>
         </div>
+
         <div class="footer-links-group">
           <h3>Suporte</h3>
           <ul>
@@ -353,33 +326,48 @@
             <li><a href="#contato">Contato</a></li>
           </ul>
         </div>
+
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i data-lucide="mail"></i>
+            </div>
+            <div class="contact-info-group">
+              <h3>E-mail</h3>
+              <p>contato@vectra.com.br</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i data-lucide="phone"></i>
+            </div>
+            <div class="contact-info-group">
+              <h3>Telefone</h3>
+              <p>+55 (11) 99999-9999</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i data-lucide="map-pin"></i>
+            </div>
+            <div class="contact-info-group">
+              <h3>Endereço</h3>
+              <p>São Paulo, SP - Brasil</p>
+            </div>
+          </div>
+        </div>
+
       </div>
+      
       <div class="footer-bottom">
         <p>2026 Vectra. Todos os direitos reservados.</p>
       </div>
     </div>
-    
-
   </footer>
-</body>
-  <script src="scripts.js"></script>
-  
-  <script>
-    // Inicializa os ícones
-    lucide.createIcons();
-    
-    // Lógica para abrir e fechar o menu no celular
-    document.addEventListener('DOMContentLoaded', function() {
-      const mobileBtn = document.getElementById('mobile-menu-btn');
-      const mobileMenu = document.getElementById('mobile-menu');
-      
-      if (mobileBtn && mobileMenu) {
-        mobileBtn.addEventListener('click', function() {
-          // Adiciona ou remove a classe que mostra o menu
-          mobileMenu.classList.toggle('active'); // Certifique-se de que no seu styles.css a classe .mobile-menu.active tenha display: block ou algo similar
-        });
-      }
-    });
-  </script>
 
-      
+  <script src="scripts.js"></script>
+   
+
+
+</body>
+</html>
