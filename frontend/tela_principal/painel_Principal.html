@@ -55,7 +55,7 @@
                 </a>
                 
                 </a>
-                <a href="usuarios.html" class="sidebar-item text-slate-400 hover:text-vectra-light hover:bg-vectra-light/10 flex items-center p-3 rounded-xl relative group transition-all duration-300">
+                <a href="painel_usuarios.html" class="sidebar-item text-slate-400 hover:text-vectra-light hover:bg-vectra-light/10 flex items-center p-3 rounded-xl relative group transition-all duration-300">
                     <div class="absolute left-0 w-1 h-8 bg-vectra-light rounded-r-md shadow-[0_0_10px_#4FA3FF] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <i class="ph ph-users text-2xl min-w-[24px] group-hover:scale-110 transition-transform duration-300"></i>
                     <span class="sidebar-text ml-4 font-medium whitespace-nowrap transition-opacity duration-300">Usuários</span>
@@ -106,52 +106,47 @@
             </header>
 
             <section class="p-8">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+ <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         
-        <div class="card-animado delay-1 hover-gradient-border card-com-gradiente relative overflow-hidden rounded-2xl p-6 shadow-xl border border-white/5 cursor-pointer group text-white h-48 flex flex-col justify-between">
-            <div class="flex justify-between items-start z-10">
-                <div>
-                    <h2 class="text-xl font-bold mb-1">Visão Geral</h2>
-                    <p class="text-sm text-slate-300">Resumo das atividades.</p>
-                </div>
-                <i class="ph ph-chart-pie-slice text-3xl text-vectra-light"></i>
+    <a href="#" class="card-animado delay-1 hover-gradient-border card-com-gradiente relative overflow-hidden rounded-2xl p-6 shadow-xl border border-white/5 cursor-pointer group text-white h-48 flex flex-col justify-between">
+        <div class="flex justify-between items-start z-10">
+            <div>
+                <h2 class="text-xl font-bold mb-1">Visão Geral</h2>
+                <p class="text-sm text-slate-300">Resumo das atividades.</p>
             </div>
-            <div class="z-10 mt-auto">
-                <i class="ph ph-arrow-right text-xl group-hover:translate-x-2 transition-transform duration-300"></i>
+            <i class="ph ph-chart-pie-slice text-3xl text-vectra-light"></i>
+        </div>
+        <div class="z-10 mt-auto">
+            <i class="ph ph-arrow-right text-xl group-hover:translate-x-2 transition-transform duration-300"></i>
+        </div>
+    </a>
+
+    <a href="painel_suporte.html" class="card-animado delay-3 hover-gradient-border relative overflow-hidden rounded-2xl p-6 shadow-lg border border-white/5 cursor-pointer group h-48 flex flex-col justify-between transition-all duration-300 text-white">
+        <div class="flex justify-between items-start z-10">
+            <div>
+                <h2 class="text-xl font-bold mb-1">Suporte e Manutenção</h2>
+                <p class="text-sm text-slate-400">Atendimento e resoluções.</p>
             </div>
+            <i class="ph ph-headset text-3xl text-rose-400/80"></i>            
         </div>
+        <div class="z-10 mt-auto">
+            <i class="ph ph-arrow-right text-xl group-hover:translate-x-2 transition-all duration-300"></i>
+        </div>
+    </a>
 
-        
-
-        <div class="card-animado delay-3 hover-gradient-border relative overflow-hidden rounded-2xl p-6 shadow-lg border border-white/5 cursor-pointer group h-48 flex flex-col justify-between transition-all duration-300 text-white">
-            <div class="flex justify-between items-start z-10">
-                <div>
-                    <h2 class="text-xl font-bold mb-1">Suporte e Manutenção</h2>
-                    <p class="text-sm text-slate-400">atendimento </p>
-                </div>
-                    <i class="ph ph-headset text-3xl text-rose-400/80"></i>            </div>
-            <div class="z-10 mt-auto">
-                <i class="ph ph-arrow-right text-xl group-hover:translate-x-2 transition-all duration-300"></i>
+    <a href="painel_controle.html" class="card-animado delay-4 hover-gradient-border relative overflow-hidden rounded-2xl p-6 shadow-lg border border-white/5 cursor-pointer group h-48 flex flex-col justify-between transition-all duration-300 text-white">
+        <div class="flex justify-between items-start z-10">
+            <div>
+                <h2 class="text-xl font-bold mb-1">Sistema controle</h2>
+                <p class="text-sm text-slate-400">Gerenciamento eficiente da movimentação de cargas em tempo real.</p>
             </div>
+            <i class="ph ph-desktop text-3xl text-emerald-400/80"></i>
         </div>
+        <div class="z-10 mt-auto">
+            <i class="ph ph-arrow-right text-xl group-hover:translate-x-2 transition-all duration-300"></i>
+        </div>
+    </a>
 
-        <div class="card-animado delay-4 hover-gradient-border relative overflow-hidden rounded-2xl p-6 shadow-lg border border-white/5 cursor-pointer group h-48 flex flex-col justify-between transition-all duration-300 text-white">
-    <div class="flex justify-between items-start z-10">
-        <div>
-            <h2 class="text-xl font-bold mb-1">Sistema controle</h2>
-            <p class="text-sm text-slate-400">Gerenciamento eficiente da movimentação de cargas em tempo real.</p>
-        </div>
-        
-        <img src="../../image/painel_controle.png" 
-             alt="Braço Robótico de Paletes" 
-             class="h-9 w-9 object-contain opacity-80 group-hover:scale-110 transition-transform duration-300">
-             
-    </div>
-    <div class="z-10 mt-auto">
-        <i class="ph ph-arrow-right text-xl group-hover:translate-x-2 transition-all duration-300"></i>
-    </div>
-</div>
-    
 </div>
 
 
@@ -160,7 +155,7 @@
 
         </main>
 
-    <script src="../../scripts.js"></script>
+    <script src="../../backend/scripts.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const menuBtn = document.getElementById('menu-btn');
