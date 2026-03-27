@@ -53,7 +53,7 @@ const usersResponse = await fetch('/api/users');
         const user = users.find(u => u.email === email && u.senha === senha);
         if (user) {
           localStorage.setItem('vectraUser', JSON.stringify({ nome_completo: user.name, funcao: user.role }));
-          window.location.href = './Tela principal/painel_Principal.html';
+          window.location.href = './tela_principal/painel_principal.html';
         } else {
           alert('Credenciais inválidas');
         }
