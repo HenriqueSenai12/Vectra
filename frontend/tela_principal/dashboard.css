@@ -280,14 +280,25 @@ body {
 }
 
 /* Ajustes estruturais para evitar que os gráficos esmaguem */
-#line-chart, 
-#donut-chart, 
-#bar-chart {
+/* Gráficos de Linha e Barra esticam para preencher o espaço */
+#line-chart, #bar-chart {
     position: relative !important;
     z-index: 50 !important;
     display: block !important;
     width: 100% !important;
     min-height: 280px !important;
+    background: transparent !important;
+}
+
+/* Gráfico de Rosca (Donut) com alinhamento centralizado */
+#donut-chart {
+    position: relative !important;
+    z-index: 50 !important;
+    display: flex !important;
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    width: 100% !important;
+    min-height: 250px !important; /* Altura um pouco menor que os demais */
     background: transparent !important;
 }
 
