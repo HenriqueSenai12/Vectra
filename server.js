@@ -1,114 +1,38 @@
 const express = require('express');
-const path = require('path');
-const cors = require('cors');
-const mysql = require('mysql2/promise');
-
+const cors = require('cors'); // Adicionado
+const { NodeSSH } = require('node-ssh');
 const app = express();
-const PORT = 3300;
+const ssh = new NodeSSH();
 
-app.use(cors());
-app.use(express.json());
-app.use(express.static(__dirname));
+app.use(cors()); // Adicionado para permitir que o Index.html acesse o servidor
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'frontend/login.html'));
-});
-
-const dbConfig = {
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'vectra_db',
-  port: 3306
+const configRobo = {
+  host: '192.168.137.x', // !!! LEMBRE-SE DE COLOCAR O IP REAL DO SEU EV3 AQUI !!!
+  username: 'robot',
+  password: 'maker'
 };
 
-app.get('/api/users', async (req, res) => {
-  let connection;
+app.get('/iniciar', async (req, res) => {
   try {
-    connection = await mysql.createConnection(dbConfig);
-    const [rows] = await connection.execute('SELECT id, nome_completo as name, email, funcao as role, senha FROM usuarios');
-    res.json(rows);
+    await ssh.connect(configRobo);
+    // Remove o arquivo de parada se ele existir e inicia o programa
+    await ssh.execCommand('rm -f /tmp/robot_stop');
+    ssh.execCommand('python3 /home/robot/Vectra/main.py', { cwd: '/home/robot/Vectra' });
+    res.send('Comando Iniciar enviado!');
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'DB error' });
-  } finally {
-    if (connection) connection.end();
+    res.status(500).send('Erro: ' + err.message);
   }
 });
 
-app.post('/api/login', async (req, res) => {
-  const { email, senha } = req.body;
-  let connection;
+app.get('/encerrar', async (req, res) => {
   try {
-    connection = await mysql.createConnection(dbConfig);
-    const [rows] = await connection.execute('SELECT nome_completo, funcao FROM usuarios WHERE email = ? AND senha = ?', [email, senha]);
-    if (rows.length > 0) {
-      res.json({ success: true, user: rows[0] });
-    } else {
-      res.json({ success: false });
-    }
+    await ssh.connect(configRobo);
+    // Cria o arquivo que o main.py monitora para parar
+    await ssh.execCommand('touch /tmp/robot_stop');
+    res.send('Comando Encerrar enviado!');
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Server error' });
-  } finally {
-    if (connection) connection.end();
+    res.status(500).send('Erro: ' + err.message);
   }
 });
 
-app.post('/api/users', async (req, res) => {
-  const {nome_completo, email, funcao, senha} = req.body;
-  let connection;
-  try {
-    connection = await mysql.createConnection(dbConfig);
-    const [result] = await connection.execute(
-      'INSERT INTO usuarios (nome_completo, email, funcao, senha) VALUES (?, ?, ?, ?)',
-      [nome_completo, email, funcao, senha]
-    );
-    res.json({success: true, id: result.insertId});
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({error: 'DB error'});
-  } finally {
-    if (connection) connection.end();
-  }
-});
-
-app.put('/api/users/:id', async (req, res) => {
-  const { id } = req.params;
-  const { nome_completo, funcao, senha } = req.body;
-  let connection;
-  try {
-    connection = await mysql.createConnection(dbConfig);
-    const query = 'UPDATE usuarios SET nome_completo = ?, funcao = ?' + (senha ? ', senha = ?' : '') + ' WHERE id = ?';
-    const params = senha ? [nome_completo, funcao, senha, id] : [nome_completo, funcao, id];
-    const [result] = await connection.execute(query, params);
-    if (result.affectedRows === 0) return res.status(404).json({error: 'Usuário não encontrado'});
-    res.json({success: true});
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({error: 'DB error'});
-  } finally {
-    if (connection) connection.end();
-  }
-});
-
-app.delete('/api/users/:id', async (req, res) => {
-  const { id } = req.params;
-  let connection;
-  try {
-    connection = await mysql.createConnection(dbConfig);
-    const [result] = await connection.execute('DELETE FROM usuarios WHERE id = ?', [id]);
-    if (result.affectedRows === 0) return res.status(404).json({error: 'Usuário não encontrado'});
-    res.json({success: true});
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({error: 'DB error'});
-  } finally {
-    if (connection) connection.end();
-  }
-});
-
-app.listen(PORT, () => {
-  console.log(`Server on http://localhost:${PORT}`);
-});
-
+app.listen(3000, () => console.log('Servidor Node rodando na porta 3000'));

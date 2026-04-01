@@ -1,0 +1,43 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center;     /* Centraliza verticalmente */
+    background-color: #f0f2f5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+    display: flex;
+    gap: 20px; /* Espaço entre os botões */
+}
+
+button {
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s, opacity 0.2s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+.btn-iniciar {
+    background-color: #28a745; /* Verde */
+}
+
+.btn-encerrar {
+    background-color: #dc3545; /* Vermelho */
+}
