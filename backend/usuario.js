@@ -275,4 +275,3 @@ async function confirmDeleteUser() {
     alert('Erro ao deletar usuário');
   }
 }
-
