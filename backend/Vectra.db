@@ -1,7 +1,9 @@
 -- ==========================================================================
 -- BANCO DE DADOS: VECTRA DB
 -- ==========================================================================
+DROP DATABASE vectra_db;
 CREATE DATABASE IF NOT EXISTS vectra_db;
+
 USE vectra_db;
 
 -- ==========================================================================
@@ -96,3 +98,39 @@ VALUES
 (1, '2026-03-28', 18, 3, 450, 45),   -- Sex
 (1, '2026-03-29', 25, 2, 490, 30),   -- Sáb
 (1, '2026-03-30', 20, 4, 460, 20);   -- Dom
+
+
+
+-- 5. Tabela Painel Suporte
+
+-- ==========================================================================
+
+CREATE TABLE IF NOT EXISTS publicacoes (
+
+    id INT AUTO_INCREMENT PRIMARY KEY,
+
+    titulo VARCHAR(255) NOT NULL,
+
+    categoria VARCHAR(100) NOT NULL,
+
+    compartilhavel BOOLEAN DEFAULT TRUE, -- 1 para On (True), 0 para Off (False)
+
+    descricao TEXT,
+
+    caminho_arquivo VARCHAR(255), -- Para armazenar a URL ou caminho do arquivo PNG/JPG/PDF enviado
+
+    usuario_id INT NULL, -- Opcional: para registrar quem fez a publicação
+
+    data_publicacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE SET NULL
+
+);
+
+
+select * from usuarios;
+
+
+
+
+
