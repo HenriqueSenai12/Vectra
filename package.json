@@ -8,9 +8,10 @@
     "dev": "nodemon server.js"
   },
   "dependencies": {
-    "express": "^4.19.2",
     "cors": "^2.8.5",
+    "express": "^4.19.2",
     "mysql2": "^3.11.0",
+    "node-ssh": "^13.2.1",
     "path": "^0.12.7"
   },
   "devDependencies": {
